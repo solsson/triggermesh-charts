@@ -27,6 +27,14 @@ steps:
         sed -i 's/example.com/{{ .Values.domain }}/' knative/templates/knative.yaml
         sed -i 's/LoadBalancer/{{ .Values.istioIngressType }}/' knative/templates/istio.yaml
 
+# Fix https://github.com/triggermesh/charts/issues/11
+- name: 'alpine:3.8'
+  entrypoint: 'sh'
+  args:
+  - '-c'
+  - |
+        patch -p0 -R < monitoring-es-rbac-fix.patch || echo "Patch failed, which might be because we got release-no-mon.yaml"
+
 # Initialize Helm without Cluster
 - name: 'gcr.io/triggermesh/helm'
   args: ['init', '--client-only']
