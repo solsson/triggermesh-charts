@@ -17,6 +17,7 @@
 source ./download.sh
 
 kubectl label namespace default istio-injection=enabled
+kubectl get nodes -o name | xargs -I NODE kubectl label "NODE" beta.kubernetes.io/fluentd-ds-ready=true
 
 kubectl create -f templates/istio-crds.yaml
 read -p "Press enter to continue"
