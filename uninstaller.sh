@@ -16,6 +16,8 @@
 
 source ./download.sh
 
+# TODO preserve service name: knative-ingressgateway namespace: istio-system
+
 for F in \
     monitoring.yaml \
     build.yaml \

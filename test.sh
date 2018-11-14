@@ -48,4 +48,8 @@ tm --registry-host "$REGISTRY_HOST" \
     --build-template openfaas-go-runtime \
     --wait
 
+kubectl run -i -t knative-test-client --image=gcr.io/cloud-builders/curl --restart=Never --rm -- \
+  -H "Host: test-localsource.default.$CLUSTER_DOMAIN" \
+  -f http://knative-ingressgateway.istio-system.svc.cluster.local/
+
 echo "All tests passeed"
