@@ -36,3 +36,6 @@ kubectl apply -f templates/build.yaml
 read -p "Press enter to continue"
 
 kubectl apply -f templates/monitoring.yaml
+
+kubectl apply -f https://storage.googleapis.com/knative-releases/eventing/previous/v0.2.0/release.yaml
+kubectl apply -f https://storage.googleapis.com/knative-releases/eventing-sources/previous/v0.2.0/release.yaml
