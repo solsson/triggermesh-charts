@@ -18,18 +18,17 @@
 ISTIO_URL="https://github.com/istio/istio/releases/download/$ISTIO_RELEASE/istio-$ISTIO_RELEASE-linux.tar.gz"
 
 #KNATIVE_RELEASE=latest
-[ -z "$KNATIVE_RELEASE" ] && KNATIVE_RELEASE="previous/v0.2.1"
+[ -z "$KNATIVE_RELEASE" ] && KNATIVE_RELEASE="previous/v0.2.2"
 KNATIVE_BASE_URL="https://storage.googleapis.com/knative-releases/serving/$KNATIVE_RELEASE"
 
 mkdir -p templates
 
-# maybe we should parse https://storage.googleapis.com/knative-releases to find the files
+# we could use gsutil cp -r instead to get all files, but it adds a folder level below
 for F in \
     build.yaml \
     istio-crds.yaml \
     istio-lean.yaml \
     istio.yaml \
-    monitoring-lean.yaml \
     monitoring-logs-elasticsearch.yaml \
     monitoring-metrics-prometheus.yaml \
     monitoring-tracing-zipkin-in-mem.yaml \
